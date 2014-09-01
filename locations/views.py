@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from locations.models import Vehicle
+
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
+    latest_vehicle_list = Vehicle.objects.order_by('-seconds_since_report')[:5]
+    output = ', '.join([v.vehicle_id for v in latest_vehicle_list])
+    return HttpResponse(output)
 
 def detail(request, vehicle_id):
     return HttpResponse("You're looking at vehicle %s." % vehicle_id)
