@@ -17,3 +17,7 @@ class Vehicle(models.Model):
 
     def was_reported_recently(self):
         return self.seconds_since_report < 30
+
+    was_reported_recently.admin_order_field = 'seconds_since_report'
+    was_reported_recently.boolean = True
+    was_reported_recently.short_description = 'Predictable?'
