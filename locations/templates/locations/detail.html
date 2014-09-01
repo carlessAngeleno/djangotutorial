@@ -1,1 +1,13 @@
-{{ vehicle }}
+<h1> {{ vehicle.vehicle_id }} </h1>
+
+{% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'locations:vote' vehicle.id %}" method="post">
+  {% csrf_token %}
+  <label>
+    <input type="checkbox" {% if vehicle.predictable %} checked {% endif %} />
+  </label> Predictable
+  <input type="submit" value="Vote" />
+</form>
