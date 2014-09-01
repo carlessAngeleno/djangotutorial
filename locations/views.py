@@ -1,5 +1,5 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 
 from locations.models import Vehicle
 
@@ -11,10 +11,7 @@ def index(request):
 
 
 def detail(request, vehicle_id):
-    try:
-        vehicle = Vehicle.objects.get(pk=vehicle_id)
-    except Vehicle.DoesNotExist:
-        raise Http404
+    vehicle = get_object_or_404(Vehicle, pk=vehicle_id)
     return render(request, 'locations/detail.html', {'vehicle': vehicle})
 
 
