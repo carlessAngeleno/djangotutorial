@@ -11,5 +11,9 @@ class Vehicle(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     vehicle_id = models.CharField(max_length=50)
 
+
     def __unicode__(self):
         return self.vehicle_id
+
+    def was_reported_recently(self):
+        return self.seconds_since_report < 30
