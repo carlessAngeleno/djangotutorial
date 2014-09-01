@@ -1,7 +1,7 @@
 {% if latest_vehicle_list %}
     <ul>
     {% for vehicle in latest_vehicle_list %}
-        <li><a href="/locations/{{ vehicle.id }}/">{{ vehicle.vehicle_id }}</a></li>
+        <li><a href="{% url 'detail' vehicle.id %}">{{ vehicle.vehicle_id }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
