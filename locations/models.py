@@ -10,3 +10,6 @@ class Vehicle(models.Model):
     predictable = models.BooleanField()
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     vehicle_id = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.vehicle_id
