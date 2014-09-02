@@ -4,11 +4,20 @@
   <p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
+<label> Predictable
+  <input type="checkbox" {% if vehicle.predictable %} checked {% endif %} />
+</label>
+<ul>
+  <li>Last reported: {{ vehicle.seconds_since_report }} seconds ago</li>
+  <li>Run ID: {{ vehicle.run_id }}</li>
+  <li>Location: {{ vehicle.longitude }}, {{ vehicle.latitude }}</li>
+  <li>Heading: {{ vehicle.heading }}</li>
+  <li>Route ID: {{ vehicle.route_id }}</li>
+  <li>Predictable?: {{ vehicle.predictable }}</li>
+  <li>Reported late: {{ vehicle.votes }} times</li>
+</ul>
+
 <form action="{% url 'locations:vote' vehicle.id %}" method="post">
   {% csrf_token %}
-  <label>
-    <input type="checkbox" {% if vehicle.predictable %} checked {% endif %} />
-  </label> Predictable
-  {{ vehicle.votes }}
-  <input type="submit" value="Vote" />
+  <input type="submit" value="Late!" />
 </form>
