@@ -17,7 +17,7 @@ class Vehicle(models.Model):
         return self.vehicle_id
 
     def was_reported_recently(self):
-        return self.seconds_since_report < 30
+        return 0 <= self.seconds_since_report < 30
 
     was_reported_recently.admin_order_field = 'seconds_since_report'
     was_reported_recently.boolean = True
