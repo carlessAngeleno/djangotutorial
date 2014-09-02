@@ -1,0 +1,5 @@
+<h1> {{ vehicle.vehicle_id }} </h1>
+
+<h2>Number of votes: {{ vehicle.votes }}</h2>
+
+<a href="{% url 'locations:detail' vehicle.id %}">Vote again?</a>

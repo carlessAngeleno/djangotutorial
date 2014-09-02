@@ -18,11 +18,12 @@ def detail(request, vehicle_id):
 
 
 def results(request, vehicle_id):
-    return HttpResponse("You're looking at the results of poll %s." % vehicle_id)
+    vehicle = get_object_or_404(Vehicle, pk=vehicle_id)
+    return render(request, 'locations/results.html', {'vehicle': vehicle})
 
 
 def vote(request, vehicle_id):
-    v = get_object_or_404(Vehicle, pk=vehicle_id)
-    v.votes += 1
-    v.save()
-    return HttpResponseRedirect(reverse('locations:results', args=(v.id,)))
+    vehicle = get_object_or_404(Vehicle, pk=vehicle_id)
+    vehicle.votes += 1
+    vehicle.save()
+    return HttpResponseRedirect(reverse('locations:results', args=(vehicle.id,)))
