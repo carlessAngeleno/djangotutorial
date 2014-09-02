@@ -1,5 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+
 
 from locations.models import Vehicle
 
@@ -20,4 +22,7 @@ def results(request, vehicle_id):
 
 
 def vote(request, vehicle_id):
-    return HttpResponse("You're voting on poll %s." % vehicle_id)
+    v = get_object_or_404(Vehicle, pk=vehicle_id)
+    v.votes += 1
+    v.save()
+    return HttpResponseRedirect(reverse('locations:results', args=(v.id,)))
