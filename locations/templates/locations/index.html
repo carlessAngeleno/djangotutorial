@@ -1,3 +1,7 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'locations/style.css' %}" />
+
 {% if latest_vehicle_list %}
     <ul>
     {% for vehicle in latest_vehicle_list %}
