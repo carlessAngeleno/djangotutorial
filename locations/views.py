@@ -21,6 +21,12 @@ class DetailView(generic.DetailView):
     model = Vehicle
     template_name = 'locations/detail.html'
 
+    def get_queryset(self):
+        """
+        Exclude any vehicles with nonsensical seconds_since_report
+        """
+        return Vehicle.objects.filter(seconds_since_report__gt=0)
+
 
 class ResultsView(generic.DetailView):
     model = Vehicle

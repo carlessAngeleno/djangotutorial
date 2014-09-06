@@ -104,3 +104,21 @@ class VehicleViewTests(TestCase):
             response.context['latest_vehicle_list'],
             ['<Vehicle: 7184>']
         )
+
+    def test_detail_view_with_a_future_vehicle(self):
+        """
+        Details page for vehicles with negative seconds_since_report should
+        not be accessible.
+        """
+        future_vehicle = create_vehicle(
+            run_id='201_38_01',
+            vehicle_id='7184',
+            route_id='201',
+            seconds_since_report=-9,
+            latitude=34.07349,
+            longitude=-118.288185,
+            heading=255,
+            predictable=True            
+        )
+        response = self.client.get(reverse('locations:detail', args=(future_vehicle.id,)))
+        self.assertEqual(response.status_code, 404)
