@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'locations/style.css' %}" />
+
+{% if route_list %}
+    <ul>
+    {% for route in route_list %}
+        <li><a href="{% url 'locations:detail' route.id %}">{{ route.display_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No routes are available.</p>
+{% endif %}

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 
-from locations.models import Vehicle, Stop
+from locations.models import Vehicle, Stop, Route
 
 class IndexView(generic.ListView):
     template_name = 'locations/index.html'
@@ -35,6 +35,10 @@ class ResultsView(generic.DetailView):
 
 class StopsView(generic.ListView):
     model = Stop
+
+
+class RoutesView(generic.ListView):
+    model = Route
 
 
 def vote(request, vehicle_id):
