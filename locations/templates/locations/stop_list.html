@@ -5,7 +5,7 @@
 {% if stop_list %}
     <ul>
     {% for stop in stop_list %}
-        <li><a href="{% url 'locations:detail' stop.id %}">{{ stop.display_name }}</a> {{ stop.latitude }}, {{ stop.longitude }}</li>
+        <li><a href="{% url 'locations:stop_routes' stop.stop_id %}">{{ stop.display_name }}</a> {{ stop.latitude }}, {{ stop.longitude }}</li>
     {% endfor %}
     </ul>
 {% else %}

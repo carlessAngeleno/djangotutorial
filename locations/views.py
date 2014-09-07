@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -39,6 +39,11 @@ class StopsView(generic.ListView):
 
 class RoutesView(generic.ListView):
     model = Route
+
+
+def stopRoutes(request, stop_id):
+    routes = get_list_or_404(Route.objects.filter(route_id=3929))
+    return render(request, 'locations/route_list.html', {'route_list': routes})       
 
 
 def vote(request, vehicle_id):
