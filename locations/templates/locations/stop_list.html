@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'locations/style.css' %}" />
+
+{% if stop_list %}
+    <ul>
+    {% for stop in stop_list %}
+        <li><a href="{% url 'locations:detail' stop.id %}">{{ stop.display_name }}</a> {{ stop.latitude }}, {{ stop.longitude }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stops are available.</p>
+{% endif %}
