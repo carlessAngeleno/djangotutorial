@@ -1,5 +1,5 @@
 from django.contrib import admin
-from locations.models import Vehicle
+from locations.models import Vehicle, Stop
 
 # Register your models here.
 class VehicleAdmin(admin.ModelAdmin):
@@ -25,3 +25,4 @@ class VehicleAdmin(admin.ModelAdmin):
     search_fields = ['vehicle_id']
 
 admin.site.register(Vehicle, VehicleAdmin)
+admin.site.register(Stop)

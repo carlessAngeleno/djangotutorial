@@ -22,3 +22,10 @@ class Vehicle(models.Model):
     was_reported_recently.admin_order_field = 'seconds_since_report'
     was_reported_recently.boolean = True
     was_reported_recently.short_description = 'Predictable?'
+
+
+class Stop(models.Model):
+    stop_id = models.CharField(max_length=50)    
+    display_name = models.CharField(max_length=255)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
