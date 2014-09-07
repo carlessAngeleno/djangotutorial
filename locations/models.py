@@ -29,3 +29,8 @@ class Stop(models.Model):
     display_name = models.CharField(max_length=255)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+
+class Route(models.Model):
+    route_id = models.CharField(max_length=50)
+    display_name = models.CharField(max_length=255)

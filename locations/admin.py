@@ -1,5 +1,5 @@
 from django.contrib import admin
-from locations.models import Vehicle, Stop
+from locations.models import Vehicle, Stop, Route
 
 # Register your models here.
 class VehicleAdmin(admin.ModelAdmin):
@@ -37,5 +37,16 @@ class StopAdmin(admin.ModelAdmin):
     search_fields = ['display_name']
 
 
+class RouteAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Route', {'fields': ['route_id', 'display_name']})
+    ]
+
+    list_display = ('route_id', 'display_name')
+
+    search_fields = ['display_name']
+
+
 admin.site.register(Vehicle, VehicleAdmin)
 admin.site.register(Stop, StopAdmin)
+admin.site.register(Route, RouteAdmin)
