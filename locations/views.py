@@ -42,7 +42,8 @@ class RoutesView(generic.ListView):
 
 
 def stopRoutes(request, stop_id):
-    routes = get_list_or_404(Route.objects.filter(route_id=3929))
+    stop = get_object_or_404(Stop, stop_id=stop_id)
+    routes = stop.routes.all()
     return render(request, 'locations/route_list.html', {'route_list': routes})       
 
 

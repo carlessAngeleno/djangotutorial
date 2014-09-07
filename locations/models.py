@@ -24,13 +24,17 @@ class Vehicle(models.Model):
     was_reported_recently.short_description = 'Predictable?'
 
 
+class Route(models.Model):
+    route_id = models.CharField(max_length=50)
+    display_name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.route_id
+
+
 class Stop(models.Model):
     stop_id = models.CharField(max_length=50)    
     display_name = models.CharField(max_length=255)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
-
-
-class Route(models.Model):
-    route_id = models.CharField(max_length=50)
-    display_name = models.CharField(max_length=255)
+    routes = models.ManyToManyField(Route)

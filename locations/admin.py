@@ -28,7 +28,8 @@ class VehicleAdmin(admin.ModelAdmin):
 class StopAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Stop', {'fields': ['stop_id', 'display_name']}),
-        ('Location', {'fields': ['latitude', 'longitude']})
+        ('Location', {'fields': ['latitude', 'longitude']}),
+        ('Extra', {'fields': ['routes']})
     ]
 
     list_display = ('stop_id', 'display_name', 'latitude', 'longitude')
