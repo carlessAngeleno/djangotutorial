@@ -47,6 +47,14 @@ def stopRoutes(request, stop_id):
     return render(request, 'locations/route_list.html', {'route_list': routes})       
 
 
+def routeVehicles(request, route_id):
+    # route_id = models.CharField(max_length=50)
+    vehicles = get_list_or_404(Vehicle, route_id=route_id)
+    # route = get_object_or_404(Route, stop_id=route_id)
+    # vehicles = route.vehicles.all()
+    return render(request, 'locations/vehicle_list.html', {'vehicle_list': vehicles})
+
+
 def vote(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, pk=vehicle_id)
     vehicle.votes += 1

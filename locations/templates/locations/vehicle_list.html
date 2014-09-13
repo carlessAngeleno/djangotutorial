@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'locations/style.css' %}" />
+
+{% if vehicle_list %}
+    <ul>
+    {% for vehicle in vehicle_list %}
+        <li><a href="{% url 'locations:detail' vehicle.id %}">{{ vehicle.id }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No vehicles are available.</p>
+{% endif %}
