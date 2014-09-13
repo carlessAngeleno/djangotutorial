@@ -7,7 +7,7 @@
 {% if vehicle_list %}
     <ul>
     {% for vehicle in vehicle_list %}
-        <li><a href="{% url 'locations:detail' vehicle.id %}">{{vehicle.run_id}} </a> Route {{vehicle.route_id}}</li>
+        <li><a href="{% url 'locations:detail' vehicle.id %}">{{vehicle.run_id}} </a> @ {{vehicle.latitude}} / {{vehicle.longitude}} and heading {{vehicle.heading}} as of {{vehicle.seconds_since_report}} seconds ago </li>
     {% endfor %}
     </ul>
 {% else %}
