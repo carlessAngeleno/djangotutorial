@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 from locations import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.IndexView.as_view(), name='index'),    
+    # url(r'^$', views.IndexView.as_view(), name='index'),    
+    url(r'^$', views.StopsView.as_view(), name='stops'),
     url(r'^stops/$', views.StopsView.as_view(), name='stops'),
     url(r'^stops/(?P<stop_id>\d+)/routes/$', views.stopRoutes, name='stop_routes'),     
     url(r'^routes/(?P<route_id>\d+)/vehicles/$', views.routeVehicles, name='route_vehicles'),
