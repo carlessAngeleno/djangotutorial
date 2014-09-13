@@ -5,7 +5,7 @@
 {% if vehicle_list %}
     <ul>
     {% for vehicle in vehicle_list %}
-        <li><a href="{% url 'locations:detail' vehicle.id %}">{{ vehicle.id }}</a></li>
+        <li><a href="{% url 'locations:detail' vehicle.id %}">{{vehicle.run_id}} </a> Route {{vehicle.route_id}}</li>
     {% endfor %}
     </ul>
 {% else %}
