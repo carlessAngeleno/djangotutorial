@@ -5,7 +5,7 @@
 {% if route_list %}
     <ul>
     {% for route in route_list %}
-        <li><a href="{% url 'locations:detail' route.id %}">{{ route.display_name }}</a></li>
+        <li><a href="{% url 'locations:route_vehicles' route.route_id %}">{{ route.display_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
