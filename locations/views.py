@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 from locations.models import Vehicle, Stop, Route
+from locations.tasks import add
 
 class IndexView(generic.ListView):
     template_name = 'locations/index.html'
@@ -67,6 +68,7 @@ def vote(request, vehicle_id):
 
 def pull(request, route_id):
     r = requests.get('http://api.metro.net/agencies/lametro/routes/%s/vehicles/' % (route_id))
+    add.delay(4, 4)
     data = json.loads(r.text)
     for item in data['items']:
         # print item
