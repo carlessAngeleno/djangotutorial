@@ -1,5 +1,6 @@
 import requests
 import json
+import pdb
 
 from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -68,10 +69,9 @@ def vote(request, vehicle_id):
 
 def pull(request, route_id):
     r = requests.get('http://api.metro.net/agencies/lametro/routes/%s/vehicles/' % (route_id))
-    add.delay(4, 4)
+    oh = add.delay(4, 4)
     data = json.loads(r.text)
     for item in data['items']:
-        # print item
         if 'run_id' not in item:
             item['run_id'] = None
         vehicle = Vehicle(

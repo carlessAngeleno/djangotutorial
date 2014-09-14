@@ -7,9 +7,6 @@ from time import sleep
 @shared_task
 def add(x, y):
     sleep(30)
-    for i in range(30):
-        l = 3
-        print l
     return x - y
 
 
