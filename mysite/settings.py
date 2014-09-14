@@ -92,8 +92,8 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Celery settings
 CELERYBEAT_SCHEDULE = {
     'pull-every-30-seconds': {
-        'task': 'locations.tasks.add',
-        'schedule': timedelta(seconds=2),
-        'args': (7, 16)
+        'task': 'locations.tasks.pull_data',
+        'schedule': timedelta(seconds=30),
+        'kwargs': {'route_id': 733}
     },
 }
