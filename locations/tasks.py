@@ -6,7 +6,7 @@ from time import sleep
 
 @shared_task
 def add(x, y):
-    sleep(30)
+    sleep(2)
     return x - y
 
 
