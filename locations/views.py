@@ -1,3 +1,6 @@
+import requests
+import json
+
 from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -60,3 +63,24 @@ def vote(request, vehicle_id):
     vehicle.votes += 1
     vehicle.save()
     return HttpResponseRedirect(reverse('locations:results', args=(vehicle.id,)))
+
+
+def pull(request, route_id):
+    r = requests.get('http://api.metro.net/agencies/lametro/routes/%s/vehicles/' % (route_id))
+    data = json.loads(r.text)
+    for item in data['items']:
+        # print item
+        if 'run_id' not in item:
+            item['run_id'] = None
+        vehicle = Vehicle(
+            seconds_since_report=item['seconds_since_report'],
+            run_id=item['run_id'],
+            longitude=item['longitude'],
+            heading=item['heading'],
+            route_id=item['route_id'],
+            predictable=item['predictable'],
+            latitude=item['latitude'],
+            vehicle_id=item['id']
+        )
+        vehicle.save()
+    return HttpResponseRedirect(reverse('locations:routes'))

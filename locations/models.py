@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Vehicle(models.Model):
     seconds_since_report = models.IntegerField()
-    run_id = models.CharField(max_length=50)
+    run_id = models.CharField(max_length=50, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     heading = models.DecimalField(max_digits=4, decimal_places=1)
     route_id = models.CharField(max_length=50)
@@ -11,7 +11,7 @@ class Vehicle(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     vehicle_id = models.CharField(max_length=50)
     votes = models.IntegerField(default=0)
-
+    captured = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.vehicle_id

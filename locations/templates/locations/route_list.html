@@ -7,7 +7,13 @@
 {% if route_list %}
     <ul>
     {% for route in route_list %}
-        <li><a href="{% url 'locations:route_vehicles' route.route_id %}">{{ route.display_name }}</a></li>
+        <li>
+            <a href="{% url 'locations:route_vehicles' route.route_id %}">{{ route.display_name }}</a>
+            <form action="{% url 'locations:pull' route.route_id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Pull!" />
+            </form>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

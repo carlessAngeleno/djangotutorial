@@ -19,7 +19,7 @@ class VehicleAdmin(admin.ModelAdmin):
         ('Other', {'fields': ['predictable']})
     ]
 
-    list_display = ('run_id', 'vehicle_id', 'route_id', 'was_reported_recently')
+    list_display = ('run_id', 'vehicle_id', 'route_id', 'was_reported_recently', 'captured')
 
     list_filter = ['vehicle_id', 'route_id']
     search_fields = ['vehicle_id']
