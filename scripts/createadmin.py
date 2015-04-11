@@ -1,9 +1,9 @@
-from django.core.management.base import BaseCommand
+#!/usr/bin/env python
+
 from django.contrib.auth.models import User
-
-
-class Command(BaseCommand):
-
-    def handle(self, *args, **options):
-        if not User.objects.filter(username="admin").exists():
-            User.objects.create_superuser("admin", "admin@admin.com", "admin")
+if User.objects.count() == 0:
+    admin = User.objects.create(username='admin')
+    admin.set_password('admin')
+    admin.is_superuser = True
+    admin.is_staff = True
+    admin.save()
